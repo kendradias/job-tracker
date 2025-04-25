@@ -6,6 +6,8 @@ cd backend
 npm init -y
 npm install express mongoose dotenv cors bcryptjs jsonwebtoken
 npm install --save-dev nodemon
+npm install mongodb
+npm install mongoose dotenv
 
 # Update package.json scripts section
 # You'll need to manually add these to your package.json:
