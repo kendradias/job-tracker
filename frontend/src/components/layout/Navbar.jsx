@@ -9,33 +9,36 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-xl font-bold text-blue-600">
-                Job Tracker
-              </Link>
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+    <div className="bg-white shadow-md w-full">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo section */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link to="/" className="text-xl font-bold text-indigo-600">
+              Job Tracker
+            </Link>
+          </div>
+          
+          {/* Desktop menu - ONLY VISIBLE ON SM AND UP */}
+          <div className="hidden sm:block">
+            <div className="ml-10 flex items-center space-x-4">
               <NavLink
                 to="/"
-                className={({ isActive }) => 
-                  isActive 
-                    ? "border-b-2 border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium" 
-                    : "border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium"
-                }
                 end
+                className={({ isActive }) => 
+                  isActive
+                    ? "bg-indigo-100 text-indigo-700 px-3 py-2 rounded-md text-sm font-medium"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+                }
               >
                 Home
               </NavLink>
               <NavLink
                 to="/jobs"
                 className={({ isActive }) => 
-                  isActive 
-                    ? "border-b-2 border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium" 
-                    : "border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium"
+                  isActive
+                    ? "bg-indigo-100 text-indigo-700 px-3 py-2 rounded-md text-sm font-medium"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
                 }
               >
                 Job Applications
@@ -43,120 +46,111 @@ const Navbar = () => {
               <NavLink
                 to="/companies"
                 className={({ isActive }) => 
-                  isActive 
-                    ? "border-b-2 border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium" 
-                    : "border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium"
+                  isActive
+                    ? "bg-indigo-100 text-indigo-700 px-3 py-2 rounded-md text-sm font-medium"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
                 }
               >
                 Companies
               </NavLink>
+              
+              {/* CTA buttons integrated with desktop nav */}
+              <div className="ml-4 flex items-center space-x-3">
+                <Link
+                  to="/add-job"
+                  className="bg-indigo-600 text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Add Job
+                </Link>
+                <Link
+                  to="/add-company"
+                  className="bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Add Company
+                </Link>
+              </div>
             </div>
           </div>
           
-          <div className="flex items-center sm:hidden">
+          {/* Mobile menu button - ONLY VISIBLE ON XS */}
+          <div className="sm:hidden">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-              aria-expanded="false"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-              <svg
-                className={`${isMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              {isMenuOpen ? (
+                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
-          
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <Link
-              to="/add-job"
-              className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+        </div>
+      </nav>
+
+      {/* Mobile menu - CONDITIONALLY SHOWN AND ONLY ON XS */}
+      {isMenuOpen && (
+        <div className="sm:hidden border-t border-gray-200">
+          <div className="px-2 pt-2 pb-3 space-y-1 max-w-7xl mx-auto">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) => 
+                isActive
+                  ? "bg-indigo-100 text-indigo-700 block px-3 py-2 rounded-md text-base font-medium"
+                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              }
+              onClick={() => setIsMenuOpen(false)}
             >
-              Add Job
-            </Link>
+              Home
+            </NavLink>
+            <NavLink
+              to="/jobs"
+              className={({ isActive }) => 
+                isActive
+                  ? "bg-indigo-100 text-indigo-700 block px-3 py-2 rounded-md text-base font-medium"
+                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              }
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Job Applications
+            </NavLink>
+            <NavLink
+              to="/companies"
+              className={({ isActive }) => 
+                isActive
+                  ? "bg-indigo-100 text-indigo-700 block px-3 py-2 rounded-md text-base font-medium"
+                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              }
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Companies
+            </NavLink>
+            <div className="pt-4 mt-3 border-t border-gray-300">
+              <Link
+                to="/add-job"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-indigo-600 text-white hover:bg-indigo-700 mb-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Add Job
+              </Link>
+              <Link
+                to="/add-company"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Add Company
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} sm:hidden`}>
-        <div className="pt-2 pb-3 space-y-1">
-          <NavLink
-            to="/"
-            className={({ isActive }) => 
-              isActive 
-                ? "bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" 
-                : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            }
-            end
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/jobs"
-            className={({ isActive }) => 
-              isActive 
-                ? "bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" 
-                : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            }
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Job Applications
-          </NavLink>
-          <NavLink
-            to="/companies"
-            className={({ isActive }) => 
-              isActive 
-                ? "bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium" 
-                : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            }
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Companies
-          </NavLink>
-          <Link
-            to="/add-job"
-            className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Add Job
-          </Link>
-          <Link
-            to="/add-company"
-            className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Add Company
-          </Link>
-        </div>
-      </div>
-    </nav>
+      )}
+    </div>
   );
 };
 

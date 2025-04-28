@@ -7,7 +7,6 @@ import Jobs from './pages/Jobs';
 import Companies from './pages/Companies';
 import JobForm from './components/jobs/JobForm';
 import CompanyForm from './components/companies/CompanyForm';
-import './styles/global.css';
 
 function App() {
   return (
